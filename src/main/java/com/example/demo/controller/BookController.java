@@ -34,6 +34,17 @@ public class BookController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+    @DeleteMapping(value = "{id}", produces = "application/json")
+    public Long deleteOne(@PathVariable Long id)
+    {
+        var result = bookService.deleteOne(id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping(value = "", produces = "application/json")
     public List<Book> getAll() {

@@ -27,4 +27,12 @@ public class BookService {
     public List<Book> getAll() {
         return bookRepository.findAll();
     }
+
+    public Optional<Long> deleteOne(Long id) {
+        if (!bookRepository.existsById(id)) {
+            return Optional.empty();
+        }
+        bookRepository.deleteById(id);
+        return Optional.of(id);
+    }
 }
